@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { app } from "../firebase";
+import { app } from "./firebase";
 import { getFirestore, updateDoc, doc } from "firebase/firestore";
 import Tarea from "./Tarea";
 
@@ -13,11 +13,19 @@ export const ListadoTareas = ({
   setEditando,
   tareaEditar,
   setTareaEditar,
+}: {
+  arrayTareas: any;
+  setArrayTareas: any;
+  correoUsuario: any;
+  editando: any;
+  setEditando: any;
+  tareaEditar: any;
+  setTareaEditar: any;
 }) => {
-  async function eliminarTarea(idTareaAElminar) {
+  async function eliminarTarea(idTareaAElminar: any) {
     //crear nuevo array de tareas
     const nvoArrayTareas = arrayTareas.filter(
-      (objetoTarea) => objetoTarea.id !== idTareaAElminar
+      (objetoTarea: any) => objetoTarea.id !== idTareaAElminar
     );
     //actualizar base de datos
     const docuRef = doc(firestore, `usuarios/${correoUsuario}`);
@@ -26,18 +34,20 @@ export const ListadoTareas = ({
     setArrayTareas(nvoArrayTareas);
   }
 
-  function editarTarea(objetoTarea) {
+  function editarTarea(objetoTarea: any) {
     setEditando(true);
-    let formDescripcion = document.querySelector("#formDescripcion");
+    let formDescripcion = document.querySelector(
+      "#formDescripcion"
+    ) as HTMLInputElement;
     formDescripcion.value = objetoTarea.descripcion;
 
-    let tareaId = document.querySelector("#tareaIdTag");
+    let tareaId = document.querySelector("#tareaIdTag") as HTMLInputElement;
     tareaId.innerHTML = objetoTarea.id;
   }
 
   return (
     <div>
-      {arrayTareas.map((objetoTarea, index) => {
+      {arrayTareas.map((objetoTarea: any, index: any) => {
         return (
           <Tarea
             arrayTareas={arrayTareas}
