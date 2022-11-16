@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { useAuth } from "../context/authContext";
+
 import { useNavigate, Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../config/firebase";
 import { Alert } from "../config/Alert";
 export function Register() {
   const [user, setUser] = useState<{ email: string; password: string }>({

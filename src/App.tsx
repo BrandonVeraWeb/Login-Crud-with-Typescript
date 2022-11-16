@@ -6,15 +6,20 @@ import { Register } from "./pages/Register";
 import { ProtectedRoute } from "./config/ProtectedRoute";
 import { AuthProvider } from "./context/authContext";
 import { ResetPassword } from "./pages/SendEmailForPassword";
+
 function App() {
   return (
     <div>
-      <div className="bg-slate-500 h-screen text-black flex-none">
+      <div className="bg-sky-700 min-h-screen flex m-auto">
         <AuthProvider>
           <Routes>
             <Route
               path="/"
-              element={<ProtectedRoute>{<Home />}</ProtectedRoute>}
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
             />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

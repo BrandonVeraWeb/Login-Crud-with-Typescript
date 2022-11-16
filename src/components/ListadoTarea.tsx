@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { app } from "./firebase";
+import { app } from "../config/firebase";
 import { getFirestore, updateDoc, doc } from "firebase/firestore";
 import Tarea from "./Tarea";
 

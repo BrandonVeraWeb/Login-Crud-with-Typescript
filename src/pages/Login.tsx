@@ -18,7 +18,7 @@ export function Login() {
     setUser((prevUser) => ({ ...prevUser, [field]: value }));
   };
   const loginWithEmailAndPassword = async () => {
-    setError("loading");
+    setError("Loading");
     try {
       await Login(user.email, user.password);
       navigate("/");
@@ -28,9 +28,10 @@ export function Login() {
     }
   };
 
-  const handleGoogleSignin = () => {
+  const handleGoogleSignin = async () => {
+    setError("Loading");
     try {
-      loginWithGoogle();
+      await loginWithGoogle();
       navigate("/");
     } catch (error) {
       setError("Don't Work");
@@ -39,6 +40,14 @@ export function Login() {
   const resetpss = async () => {
     navigate("/resetpassword");
   };
+  const log = document.getElementById("Login");
+  log?.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
+  const googlelog = document.getElementById("google");
+  googlelog?.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
 
   return (
     <div className=" bg-sky-700 opacity-100 fixed inset-0 z-50">
@@ -60,6 +69,7 @@ export function Login() {
                   onChange={(e) => handleSubmit("email", e.target.value)}
                   type="email"
                   name="email"
+                  required
                   placeholder="youremail@company.ltd"
                   className="bg-gray-100 shadow appearance-non border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
                 />
@@ -73,6 +83,7 @@ export function Login() {
                   Password
                 </label>
                 <input
+                  required
                   value={user.password}
                   onChange={(e) => handleSubmit("password", e.target.value)}
                   type="password"
@@ -85,6 +96,7 @@ export function Login() {
 
               <div className="flex items-center justify-between">
                 <button
+                  id="Login"
                   className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus"shadow-outline text-sm'
                   onClick={() => loginWithEmailAndPassword()}
                 >
@@ -107,6 +119,7 @@ export function Login() {
             <button
               className="bg-slate-300 hover:bg-slate-200 text-black shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full"
               onClick={() => handleGoogleSignin()}
+              id="google"
             >
               Google Login
             </button>

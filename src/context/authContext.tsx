@@ -8,7 +8,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../config/firebase";
 
 export const authContext = createContext("");
 
@@ -20,7 +20,6 @@ export const useAuth = () => {
 function AuthProvider({ children }: any) {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  // const [accessToken, setAccessToken] = useState("");
 
   const signup = (email: string, password: string) =>
     createUserWithEmailAndPassword(auth, email, password);
@@ -42,7 +41,7 @@ function AuthProvider({ children }: any) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // setAccessToken(auth.currentUser.accessToken)
+
       setLoading(false);
     });
     return () => unsubscribe();

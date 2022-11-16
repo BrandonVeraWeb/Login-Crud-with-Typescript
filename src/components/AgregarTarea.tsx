@@ -1,5 +1,5 @@
 import React from "react";
-import { app } from "./firebase";
+import { app } from "../config/firebase";
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
 
 const firestore = getFirestore(app);
@@ -49,12 +49,15 @@ export const AgregarTarea: any = ({
 
     function actualizarTarea(tareas: any, idTarea: any, nuevaData: any) {
       const nuevasTareas = tareas.map((tarea: any) => {
-        if (tarea.id != idTarea) return tarea;
+        if (tarea.id !== idTarea) return tarea;
         setEditando(false);
-        let formDescripcion = document.querySelector("#formDescripcion");
+        let formDescripcion = document.querySelector(
+          "#formDescripcion"
+        ) as HTMLInputElement;
+        formDescripcion.value = "";
 
-        let state = document.querySelector("#selectEstado");
-
+        let state = document.querySelector("#selectEstado") as HTMLInputElement;
+        state.value = "";
         return {
           ...tarea,
           ...nuevaData,
@@ -91,30 +94,28 @@ export const AgregarTarea: any = ({
 
   const cancelarEdicion = async (e: any) => {
     setEditando(false);
-    let formDescripcion = document.querySelector("#formDescripcion");
+    let formDescripcion = document.querySelector(
+      "#formDescripcion"
+    ) as HTMLInputElement;
+    formDescripcion.value = "";
   };
 
   return (
     <>
       <form onSubmit={editando ? editarTarea : anadirTarea}>
         <input
-          className="text-2xl block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-center"
+          className=" text-center text-2xl block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-center"
           required
           type="text"
           placeholder="Alguna Tarea Por Hacer?"
           id="formDescripcion"
-          // className= 'bg-gray-100 shadow appearance-non border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline '
         />
-        <label
-          className="touch-none"
-          // for="none"
-          // class="mt-2 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 "
-        >
+        <label className="mt-2 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 ">
           Elegir Estado
         </label>
         <select
           id="selectEstado"
-          // class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option selected value="Pendiente">
             Pendiente
