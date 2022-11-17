@@ -14,7 +14,7 @@ export default function Navbar({}) {
     }
   };
   const handleName = () => {
-    navigation("/displayName");
+    navigation("/changeName");
   };
   const handleEmail = () => {
     navigation("/changeEmail");

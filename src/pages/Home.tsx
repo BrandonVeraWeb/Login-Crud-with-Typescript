@@ -4,8 +4,7 @@ import { AgregarTarea } from "../components/AgregarTarea";
 import { ListadoTareas } from "../components/ListadoTarea";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { app } from "../config/firebase";
-
-import Navbar from "../utils/NavBar";
+import Navbar from "../components/NavBar";
 export function Home() {
   const { user, loading } = useAuth();
   const [editando, setEditando] = useState<boolean>(false);
@@ -51,7 +50,7 @@ export function Home() {
         <Navbar />
         <div className="flex h-screen justify-center items-center">
           <div className="bg-gray-100 flex-col justify-center bg-white py-12 px-24 border-4 border-sky-900 rounded-xl">
-            <h1 className="text-xl mb-4 text-center"> Welcome {user.email}</h1>
+            <h1 className="text-xl mb-4 text-center"> Welcome </h1>
 
             <hr />
             <AgregarTarea
