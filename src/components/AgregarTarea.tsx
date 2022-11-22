@@ -1,10 +1,20 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { app } from "../config/firebase";
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
 
 const firestore = getFirestore(app);
 
-export const AgregarTarea: any = ({
+type Add = {
+  correoUsuario: string;
+  setArrayTareas: Function;
+  arrayTareas: [string, string, string];
+  editando: boolean;
+  setEditando: Function;
+  tareaEditar: string;
+  setTareaEditar: string;
+};
+
+export const AgregarTarea: Function = ({
   correoUsuario,
   setArrayTareas,
   arrayTareas,
@@ -12,20 +22,12 @@ export const AgregarTarea: any = ({
   setEditando,
   tareaEditar,
   setTareaEditar,
-}: {
-  correoUsuario: any;
-  setArrayTareas: any;
-  arrayTareas: any;
-  editando: any;
-  setEditando: any;
-  tareaEditar: any;
-  setTareaEditar: any;
-}) => {
+}: Add): ReactElement => {
   async function anadirTarea(e: any) {
     e.preventDefault();
     // crear nuevo array de tareas
-    const descripcion = e.target.formDescripcion.value;
-    const state = e.target.selectEstado.value;
+    const descripcion: string = e.target.formDescripcion.value;
+    const state: string = e.target.selectEstado.value;
     const nvoArrayTareas = [
       ...arrayTareas,
       {
@@ -92,7 +94,7 @@ export const AgregarTarea: any = ({
     }
   }
 
-  const cancelarEdicion = async (e: any) => {
+  const cancelarEdicion = async () => {
     setEditando(false);
     let formDescripcion = document.querySelector(
       "#formDescripcion"

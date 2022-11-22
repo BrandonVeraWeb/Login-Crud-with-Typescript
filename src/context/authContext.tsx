@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactElement,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import {
   sendPasswordResetEmail,
   createUserWithEmailAndPassword,
@@ -17,7 +23,7 @@ export const useAuth = () => {
   return context;
 };
 
-function AuthProvider({ children }: any) {
+function AuthProvider({ children }: { children: ReactElement }) {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
 

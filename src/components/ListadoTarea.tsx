@@ -4,7 +4,17 @@ import Tarea from "./Tarea";
 
 const firestore = getFirestore(app);
 
-export const ListadoTareas = ({
+type Add = {
+  arrayTareas: [string, string, string];
+  setArrayTareas: Function;
+  correoUsuario: string;
+  editando: boolean;
+  setEditando: Function;
+  tareaEditar: string;
+  setTareaEditar: string;
+};
+
+export const ListadoTareas: Function = ({
   arrayTareas,
   setArrayTareas,
   correoUsuario,
@@ -12,16 +22,8 @@ export const ListadoTareas = ({
   setEditando,
   tareaEditar,
   setTareaEditar,
-}: {
-  arrayTareas: any;
-  setArrayTareas: any;
-  correoUsuario: any;
-  editando: any;
-  setEditando: any;
-  tareaEditar: any;
-  setTareaEditar: any;
-}) => {
-  async function eliminarTarea(idTareaAElminar: any) {
+}: Add) => {
+  async function eliminarTarea(idTareaAElminar: string) {
     //crear nuevo array de tareas
     const nvoArrayTareas = arrayTareas.filter(
       (objetoTarea: any) => objetoTarea.id !== idTareaAElminar

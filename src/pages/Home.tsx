@@ -12,7 +12,7 @@ export function Home() {
 
   const firestore = getFirestore(app);
 
-  const [arrayTareas, setArrayTareas] = useState([]);
+  const [arrayTareas, setArrayTareas] = useState<string[]>([]);
   const fakeData = [
     {
       id: 1,
