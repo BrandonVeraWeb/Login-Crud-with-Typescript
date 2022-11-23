@@ -22,9 +22,10 @@ export const useAuth = () => {
   const context = useContext<any>(authContext);
   return context;
 };
+type OrnNull = object | null;
 
 function AuthProvider({ children }: { children: ReactElement }) {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<OrnNull>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   const signup = (email: string, password: string) =>

@@ -5,15 +5,21 @@ import Tarea from "./Tarea";
 const firestore = getFirestore(app);
 
 type Add = {
-  arrayTareas: [string, string, string];
+  arrayTareas: Array<Task>;
   setArrayTareas: Function;
   correoUsuario: string;
   editando: boolean;
-  setEditando: Function;
+  setEditando: EditFunction;
+
   tareaEditar: string;
   setTareaEditar: string;
 };
-
+type Task = {
+  descripcion: string;
+  id: string;
+  state: string;
+};
+type EditFunction = (objetoTarea: boolean) => void;
 export const ListadoTareas: Function = ({
   arrayTareas,
   setArrayTareas,
@@ -26,7 +32,7 @@ export const ListadoTareas: Function = ({
   async function eliminarTarea(idTareaAElminar: string) {
     //crear nuevo array de tareas
     const nvoArrayTareas = arrayTareas.filter(
-      (objetoTarea: any) => objetoTarea.id !== idTareaAElminar
+      (objetoTarea: Task) => objetoTarea.id !== idTareaAElminar
     );
     //actualizar base de datos
     const docuRef = doc(firestore, `usuarios/${correoUsuario}`);
@@ -35,7 +41,7 @@ export const ListadoTareas: Function = ({
     setArrayTareas(nvoArrayTareas);
   }
 
-  function editarTarea(objetoTarea: any) {
+  function editarTarea(objetoTarea: Task) {
     setEditando(true);
     let formDescripcion = document.querySelector(
       "#formDescripcion"
@@ -48,7 +54,7 @@ export const ListadoTareas: Function = ({
 
   return (
     <div>
-      {arrayTareas.map((objetoTarea: any, index: any) => {
+      {arrayTareas.map((objetoTarea: Task) => {
         return (
           <Tarea
             arrayTareas={arrayTareas}

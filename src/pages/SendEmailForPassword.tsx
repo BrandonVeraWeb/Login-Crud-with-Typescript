@@ -4,7 +4,7 @@ import { useAuth } from "../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
 
 export function ResetPassword() {
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<{ email: string; password: string }>({
     email: "",
     password: "",
   });

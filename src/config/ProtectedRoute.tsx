@@ -1,7 +1,8 @@
+import { ReactElement } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 //element react element
-export function ProtectedRoute({ children }: any) {
+export function ProtectedRoute({ children }: { children: ReactElement }) {
   const { user, loading } = useAuth();
 
   if (loading) return <h1>Loading</h1>;

@@ -1,8 +1,12 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useRef } from "react";
 import { app } from "../config/firebase";
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
 
 const firestore = getFirestore(app);
+type Task = { id: string };
+type Tasks = {
+  map: Function;
+};
 
 type Add = {
   correoUsuario: string;
@@ -23,11 +27,15 @@ export const AgregarTarea: Function = ({
   tareaEditar,
   setTareaEditar,
 }: Add): ReactElement => {
-  async function anadirTarea(e: any) {
+  const formRef = useRef<any>();
+  const inputRef = useRef<any>();
+  const inputId = useRef<any>();
+  async function anadirTarea(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     // crear nuevo array de tareas
-    const descripcion: string = e.target.formDescripcion.value;
-    const state: string = e.target.selectEstado.value;
+    const descripcion: string = inputRef.current.value;
+    const state: string = inputId.current.value;
     const nvoArrayTareas = [
       ...arrayTareas,
       {
@@ -39,26 +47,29 @@ export const AgregarTarea: Function = ({
 
     // actualizar base de datos
     const docuRef = doc(firestore, `usuarios/${correoUsuario}`);
-    updateDoc(docuRef, { tareas: [...nvoArrayTareas] });
+    await updateDoc(docuRef, { tareas: [...nvoArrayTareas] });
     //actualizar estado
     setArrayTareas(nvoArrayTareas);
     //limpiar form
-    e.target.formDescripcion.value = "";
+    formRef.current.reset();
+    console.log(typeof formRef);
   }
 
-  async function editarTarea(e: any) {
-    e.preventDefault();
+  async function editarTarea(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-    function actualizarTarea(tareas: any, idTarea: any, nuevaData: any) {
-      const nuevasTareas = tareas.map((tarea: any) => {
+    function actualizarTarea(
+      tareas: Tasks,
+      idTarea: string | null,
+      nuevaData: object | []
+    ) {
+      const nuevasTareas = tareas.map((tarea: Task) => {
         if (tarea.id !== idTarea) return tarea;
         setEditando(false);
-        let formDescripcion = document.querySelector(
-          "#formDescripcion"
-        ) as HTMLInputElement;
+        let formDescripcion = inputRef.current;
         formDescripcion.value = "";
 
-        let state = document.querySelector("#selectEstado") as HTMLInputElement;
+        let state = inputId.current;
         state.value = "";
         return {
           ...tarea,
@@ -96,27 +107,26 @@ export const AgregarTarea: Function = ({
 
   const cancelarEdicion = async () => {
     setEditando(false);
-    let formDescripcion = document.querySelector(
-      "#formDescripcion"
-    ) as HTMLInputElement;
-    formDescripcion.value = "";
+    formRef.current.value = " ";
   };
 
   return (
     <>
-      <form onSubmit={editando ? editarTarea : anadirTarea}>
+      <form ref={formRef} onSubmit={editando ? editarTarea : anadirTarea}>
         <input
           className=" text-center text-2xl block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-center"
           required
           type="text"
           placeholder="Alguna Tarea Por Hacer?"
           id="formDescripcion"
+          ref={inputRef}
         />
         <label className="mt-2 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 ">
           Elegir Estado
         </label>
         <select
           id="selectEstado"
+          ref={inputId}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option selected value="Pendiente">
@@ -138,7 +148,7 @@ export const AgregarTarea: Function = ({
             <button
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 ml-2 mt-2"
-              onClick={editarTarea}
+              onClick={(event) => editarTarea}
             >
               {" "}
               Editar tarea{" "}

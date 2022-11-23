@@ -1,8 +1,13 @@
 import React from "react";
+type Task = {
+  descripcion: string;
+  id: string;
+  state: string;
+};
 
 type Add = {
-  arrayTareas: [string, string, string];
-  objetoTarea: any;
+  arrayTareas: Array<Task>;
+  objetoTarea: Task;
   eliminarTarea: Function;
   editarTarea: Function;
   editando: boolean;
@@ -66,7 +71,6 @@ export default function Tarea({
           </button>
         </div>
         <div className="inline-flex rounded-md shadow-sm">
-          {/* {editando && objetoTarea.id === objetoEditando ? () : () } */}
           <button
             id={`btnEditar${objetoTarea.id}`}
             onClick={() => editarTarea(objetoTarea)}
