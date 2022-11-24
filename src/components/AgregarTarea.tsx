@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from "react";
+import React, { MutableRefObject, ReactElement, useRef } from "react";
 import { app } from "../config/firebase";
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
 
@@ -27,9 +27,9 @@ export const AgregarTarea: Function = ({
   tareaEditar,
   setTareaEditar,
 }: Add): ReactElement => {
-  const formRef = useRef<any>();
-  const inputRef = useRef<any>();
-  const inputId = useRef<any>();
+  const formRef = useRef() as MutableRefObject<HTMLFormElement>;
+  const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const inputId = useRef() as MutableRefObject<HTMLSelectElement>;
   async function anadirTarea(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -52,7 +52,6 @@ export const AgregarTarea: Function = ({
     setArrayTareas(nvoArrayTareas);
     //limpiar form
     formRef.current.reset();
-    console.log(typeof formRef);
   }
 
   async function editarTarea(event: React.FormEvent<HTMLFormElement>) {

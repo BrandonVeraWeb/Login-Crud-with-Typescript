@@ -5,6 +5,7 @@ import { ListadoTareas } from "../components/ListadoTarea";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { app } from "../config/firebase";
 import Navbar from "../components/NavBar";
+
 export function Home() {
   const { user, loading } = useAuth();
   const [editando, setEditando] = useState<boolean>(false);

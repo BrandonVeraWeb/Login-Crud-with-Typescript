@@ -17,12 +17,15 @@ export function Register() {
   const handleSubmit = (field: string, value: string) => {
     setUser((prevUser) => ({ ...prevUser, [field]: value }));
   };
-  const signInWithEmailAndPassword = async () => {
+  const signInWithEmailAndPassword = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.preventDefault();
     setError("Loading, Ya puedes iniciar sesion");
     try {
       await createUserWithEmailAndPassword(auth, user.email, user.password);
 
-      navigate("/");
+      navigate("/changeName");
       await setError("Loading, Ya puedes iniciar sesion");
     } catch (error) {
       setError("Don't Work");
@@ -76,7 +79,7 @@ export function Register() {
 
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full"
-                onClick={() => signInWithEmailAndPassword()}
+                onClick={signInWithEmailAndPassword}
               >
                 {" "}
                 Register{" "}
