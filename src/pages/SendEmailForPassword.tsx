@@ -40,14 +40,14 @@ export function ResetPassword() {
                     htmlFor="email"
                     className="text-center mb-5 block text-gray-700 text-sm font-bold my-2 text-xl"
                   >
-                    Your Email
+                    Tu Correo Electronico
                   </label>
                   <input
                     onChange={(e) => handleSubmit("email", e.target.value)}
                     value={user.email}
                     type="email"
                     name="email"
-                    placeholder="youremail@company.ltd"
+                    placeholder="Tucorreo@compañia.com"
                     className="text-center bg-gray-100 shadow appearance-non border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
                   />
                 </div>
@@ -57,15 +57,15 @@ export function ResetPassword() {
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm"
                     onClick={() => handleResetPassword()}
                   >
-                    Send Email
+                    Enviar Email
                   </button>
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm ml-2">
-                    <Link to="/login">Cancel</Link>
+                    <Link to="/Login">Cancelar</Link>
                   </button>
                 </div>
               </form>
               <p className="my-4 text-sm flex justify-between px-3 block text-gray-700 text-sm font-bold mb-5">
-                Don't have an Account? <Link to="/register">Register </Link>{" "}
+                No tienes una cuenta? <Link to="/register"> Registrarse </Link>{" "}
               </p>
             </div>
           </div>

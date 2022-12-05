@@ -35,17 +35,17 @@ function PasswordChange() {
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (password.newPassword !== passwordConfirm.passwordPlus)
-      return setError("PASSWORD ARE NOT THE SAME");
+      return setError("LAS CONTRASEÑAS NO SON IGUALES");
 
     await updatePassword(user, newPasswordCurrent)
       .then(() => {
         event.preventDefault();
-        alert("Password Was Change");
-        setError("PASSWORD WAS CHANGE");
+        alert("CONTRASEÑA CAMBIADA CON EXITO");
+        setError("CONTRASEÑA CAMBIADA CON EXITO");
         logout();
       })
       .catch((error) => {
-        setError("Debes iniciar sesion nuevamente para cambiar tu password");
+        setError("Debes iniciar sesion nuevamente para cambiar tu contraseña");
         logout();
       });
   };
@@ -64,7 +64,7 @@ function PasswordChange() {
                 <label className="block text-gray-700 font-bold">
                   <div className="mb-4">
                     {" "}
-                    NEW PASSWORD
+                    NUEVA CONTRASEÑA
                     <input
                       required
                       type="password"
@@ -79,7 +79,7 @@ function PasswordChange() {
                 </label>
                 <label className="block text-gray-700 font-bold">
                   {" "}
-                  NEW PASSWORD CONFIRM
+                  CONFIRMAR NUEVA CONTRASEÑA
                   <input
                     value={passwordConfirm.passwordPlus}
                     onChange={(e) =>
@@ -101,7 +101,7 @@ function PasswordChange() {
                   onClick={handleBack}
                   className="bg-red-500 hover:bg-red-700 text-white shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full mb-4 mt-1"
                 >
-                  Back
+                  Cancelar
                 </button>
               </form>
             </div>

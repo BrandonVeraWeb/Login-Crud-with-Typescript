@@ -21,12 +21,12 @@ export function Register() {
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
     e.preventDefault();
-    setError("Loading, Ya puedes iniciar sesion");
+    setError("Cargando, Ya puedes iniciar sesion");
     try {
       await createUserWithEmailAndPassword(auth, user.email, user.password);
 
       navigate("/changeName");
-      await setError("Loading, Ya puedes iniciar sesion");
+      await setError("Cargando, Ya puedes iniciar sesion");
     } catch (error) {
       setError("Don't Work");
     }
@@ -43,7 +43,7 @@ export function Register() {
                 htmlFor="email"
                 className="block text-gray-700 text-sm font-bold my-2"
               >
-                Email
+                Correo Electronico
               </label>
 
               <div className="mb-4">
@@ -52,7 +52,7 @@ export function Register() {
                   value={user.email}
                   type="email"
                   name="email"
-                  placeholder="youremail@company.ltd"
+                  placeholder="Tucorreo@compañia.com"
                   className=" shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   required
                 />
@@ -63,14 +63,14 @@ export function Register() {
                   htmlFor="password"
                   className="block text-gray-700 text-sm font-bold my-2"
                 >
-                  Password
+                  Contraseña
                 </label>
                 <input
                   onChange={(e) => handleSubmit("password", e.target.value)}
                   value={user.password}
                   type="password"
                   name="password"
-                  placeholder="password"
+                  placeholder="********"
                   id="password"
                   className=" shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tighy focus:outline-none focus:shadow-outline"
                   required
@@ -82,14 +82,14 @@ export function Register() {
                 onClick={signInWithEmailAndPassword}
               >
                 {" "}
-                Register{" "}
+                Registrarse{" "}
               </button>
             </form>
             <p className=" my-4 flex justify-between px-3 text-slate-600">
-              Already have an Account?{" "}
-              <Link to="/Login" className="text-slate-600">
+              Ya tienes una cuenta?{" "}
+              <Link to="/Login" className="text-blue-600">
                 {" "}
-                Log in{" "}
+                Iniciar sesión{" "}
               </Link>{" "}
             </p>
           </div>

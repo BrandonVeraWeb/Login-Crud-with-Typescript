@@ -20,13 +20,13 @@ export function Login() {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
-    setError("Loading");
+    setError("Cargando");
     try {
       await Login(user.email, user.password);
       navigate("/");
-      setError("Loading");
+      setError("Cargando");
     } catch (error) {
-      setError("Email or Password Invalid");
+      setError("Correo o Contraseña son invalidas");
     }
   };
 
@@ -34,12 +34,12 @@ export function Login() {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
-    setError("Loading");
+    setError("Cargando");
     try {
       await loginWithGoogle();
       navigate("/");
     } catch (error) {
-      setError("Don't Work");
+      setError("Intente nuevamente");
     }
   };
   const resetpss = async () => {
@@ -59,7 +59,7 @@ export function Login() {
                   htmlFor="email"
                   className="block text-gray-700 text-sm font-bold my-2"
                 >
-                  Email
+                  Correo Electronico
                 </label>
                 <input
                   value={user.email}
@@ -67,7 +67,7 @@ export function Login() {
                   type="email"
                   name="email"
                   required
-                  placeholder="youremail@company.ltd"
+                  placeholder="Tucorreo@compañia.com"
                   className="bg-gray-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
                 />
               </div>
@@ -77,7 +77,7 @@ export function Login() {
                   htmlFor="password"
                   className="block text-gray-700 text-sm font-bold my-2"
                 >
-                  Password
+                  Contraseña
                 </label>
                 <input
                   required
@@ -98,27 +98,27 @@ export function Login() {
                   onClick={loginWithEmailAndPassword}
                 >
                   {" "}
-                  Login{" "}
+                  Iniciar sesión{" "}
                 </button>
 
                 <a
                   href=" "
-                  className="inline-block align-basekube fibt-bold text-sm text-blue-500 hover:text-blue-800 font-bold"
+                  className="inline-block align-basekube font-bold text-sm text-blue-500 hover:text-blue-800 font-bold ml-5"
                   onClick={resetpss}
                 >
-                  Forgot Password?
+                  Olvidaste tu contraseña?
                 </a>
               </div>
             </form>
             <p className="text-black my-4 text-sm flex justify-between px-3 block text-gray-700 text-sm font-bold mb-5">
-              Don't have an Account? <Link to="/register">Register </Link>{" "}
+              No tienes una cuenta? <Link to="/register">Registrarse </Link>{" "}
             </p>
             <button
               className="bg-slate-300 hover:bg-slate-200 text-black shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full"
               onClick={handleGoogleSignin}
               id="google"
             >
-              Google Login
+              Iniciar sesión con Google
             </button>
           </div>
         </div>

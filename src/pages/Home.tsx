@@ -51,7 +51,7 @@ export function Home() {
         <Navbar />
         <div className="flex h-screen justify-center items-center">
           <div className="bg-gray-100 flex-col justify-center bg-white py-12 px-24 border-4 border-sky-900 rounded-xl">
-            <h1 className="text-xl mb-4 text-center"> Welcome </h1>
+            <h1 className="text-xl mb-4 text-center"> Bienvenido </h1>
 
             <hr />
             <AgregarTarea

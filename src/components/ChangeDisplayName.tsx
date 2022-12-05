@@ -53,7 +53,7 @@ export default function ChangeDisplayName() {
             {error && <Alert message={error} />}
             <form className="bg-gray-100 shadow-md border-2 rounded px-8 pt-6 pb-8 mb-4">
               <label className=" text-center  block text-gray-700 font-bold">
-                NEW NAME
+                NUEVO NOMBRE
                 <div className="mb-4 mt-2">
                   <input
                     type="text"
@@ -63,7 +63,7 @@ export default function ChangeDisplayName() {
                       handleChange("displayNewName", e.target.value)
                     }
                     required
-                    placeholder="Your New Name"
+                    placeholder="TU NUEVO NOMBRE"
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   ></input>
                 </div>
@@ -78,7 +78,7 @@ export default function ChangeDisplayName() {
                 onClick={handleCancelClick}
                 className="bg-red-500 hover:bg-red-700 text-white shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full "
               >
-                Back
+                CANCELAR
               </button>
             </form>
           </div>

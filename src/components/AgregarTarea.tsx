@@ -69,7 +69,7 @@ export const AgregarTarea: Function = ({
         formDescripcion.value = "";
 
         let state = inputId.current;
-        state.value = "";
+        state.value = "Pendiente";
         return {
           ...tarea,
           ...nuevaData,

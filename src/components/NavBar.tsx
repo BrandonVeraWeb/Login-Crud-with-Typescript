@@ -16,9 +16,9 @@ export default function Navbar({}) {
   const handleName = () => {
     navigation("/changeName");
   };
-  const handleEmail = () => {
-    navigation("/changeEmail");
-  };
+  // const handleEmail = () => {
+  //   navigation("/changeEmail");
+  // };
   const handlePassword = () => {
     navigation("/changePassword");
   };
@@ -56,7 +56,7 @@ export default function Navbar({}) {
               </li>
             </ul>
             <button className="relative flex justify-center items-center bg-sky-700 hover:bg-sky-700 border focus:outline-none shadow text-white rounded focus:ring ring-sky-600 group pr-2">
-              <p className="px-4">settings</p>
+              <p className="px-4">OPCIONES</p>
               <span className="border-l p-2 hover:bg-sky-500">
                 <svg
                   className=" w-5 h-5"
@@ -79,28 +79,28 @@ export default function Navbar({}) {
                     onClick={handlePassword}
                   >
                     {" "}
-                    CHANGE PASSWORD
+                    CAMBIAR CONTRASEÑA
                   </li>
-                  <li
+                  {/* <li
                     onClick={handleEmail}
                     className="px-4 py-1 hover:bg-gray-100 border-b"
                   >
                     {" "}
                     CHANGE EMAIL
-                  </li>
+                  </li> */}
                   <li
                     className="px-4 py-1 hover:bg-gray-100 border-b"
                     onClick={handleName}
                   >
                     {" "}
-                    CHANGE NAME
+                    CAMBIAR NOMBRE
                   </li>
                   <li
                     className="px-4 py-1 hover:bg-sky-500 border-b"
                     onClick={handlelogout}
                   >
                     {" "}
-                    LOGOUT
+                    CERRAR SESION
                   </li>
                 </ul>
               </div>
