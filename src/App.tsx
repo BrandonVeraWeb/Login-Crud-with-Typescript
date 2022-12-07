@@ -12,7 +12,7 @@ import { ChangeEmail } from "./components/ChangeEmail";
 function App() {
   return (
     <div>
-      <div className="bg-sky-700 min-h-screen flex m-auto">
+      <div className="bg-sky-700 min-h-screen flex-none m-auto">
         <AuthProvider>
           <Routes>
             <Route

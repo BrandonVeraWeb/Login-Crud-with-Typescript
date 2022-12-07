@@ -113,10 +113,10 @@ export const AgregarTarea: Function = ({
     <>
       <form ref={formRef} onSubmit={editando ? editarTarea : anadirTarea}>
         <input
-          className=" text-center text-2xl block p-2 items-center text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-center"
+          className=" m-auto text-center text-2xl block p-2 items-center text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-center pr-20 pl-20"
           required
           type="text"
-          placeholder="Alguna Tarea Por Hacer?"
+          placeholder="Alguna tarea por hacer?"
           id="formDescripcion"
           ref={inputRef}
         />
@@ -126,7 +126,7 @@ export const AgregarTarea: Function = ({
         <select
           id="selectEstado"
           ref={inputId}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className=" m-auto pl-20 pr-20 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-green-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option selected value="Pendiente">
             Pendiente

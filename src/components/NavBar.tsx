@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
-export default function Navbar({}) {
+export function Navbar({}) {
   const { user, logout } = useAuth();
   const navigation = useNavigate();
   const [navbarOpen, setNavbarOpen] = useState<boolean>(false);
@@ -25,7 +25,7 @@ export default function Navbar({}) {
 
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-sky-900 ">
+      <nav className="px-2 sm:px-4 relative flex flex-wrap items-center justify-between px-2 py-3 bg-sky-900 ">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between bg-sky-900">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <p className="text-xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">
@@ -81,13 +81,7 @@ export default function Navbar({}) {
                     {" "}
                     CAMBIAR CONTRASEÑA
                   </li>
-                  {/* <li
-                    onClick={handleEmail}
-                    className="px-4 py-1 hover:bg-gray-100 border-b"
-                  >
-                    {" "}
-                    CHANGE EMAIL
-                  </li> */}
+
                   <li
                     className="px-4 py-1 hover:bg-gray-100 border-b"
                     onClick={handleName}
@@ -111,3 +105,4 @@ export default function Navbar({}) {
     </>
   );
 }
+export default Navbar;

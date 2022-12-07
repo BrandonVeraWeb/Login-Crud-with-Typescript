@@ -47,13 +47,21 @@ export function Home() {
 
   return (
     <div>
-      <div className=" bg-sky-700 text-center opacity-100 fixed inset-0 z-50">
-        <Navbar />
-        <div className="flex h-screen justify-center items-center">
-          <div className="bg-gray-100 flex-col justify-center bg-white py-12 px-24 border-4 border-sky-900 rounded-xl">
-            {" "}
-            <h1 className="text-xl mb-4 text-center"> Bienvenido </h1>
-            <AgregarTarea
+      <Navbar />
+      <div className=" text-center min-h-screen max-xs mt-20 ml-60 mr-60 pb-20 text-black rounded">
+        <div className="rounded-xl bg-slate-100 rounded shadow-md py-12 px-24 mb-4 border-4 border-zinc-500 ">
+          <h1 className="text-xl mb-4 text-center"> Welcome</h1>
+          <AgregarTarea
+            arrayTareas={arrayTareas}
+            setArrayTareas={setArrayTareas}
+            correoUsuario={user.email}
+            editando={editando}
+            setEditando={setEditando}
+            tareaEditar={tareaEditar}
+            setTareaEditar={setTareaEditar}
+          />
+          {arrayTareas ? (
+            <ListadoTareas
               arrayTareas={arrayTareas}
               setArrayTareas={setArrayTareas}
               correoUsuario={user.email}
@@ -62,18 +70,7 @@ export function Home() {
               tareaEditar={tareaEditar}
               setTareaEditar={setTareaEditar}
             />
-            {arrayTareas ? (
-              <ListadoTareas
-                arrayTareas={arrayTareas}
-                setArrayTareas={setArrayTareas}
-                correoUsuario={user.email}
-                editando={editando}
-                setEditando={setEditando}
-                tareaEditar={tareaEditar}
-                setTareaEditar={setTareaEditar}
-              />
-            ) : null}
-          </div>
+          ) : null}
         </div>
       </div>
     </div>
