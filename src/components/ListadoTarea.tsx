@@ -10,6 +10,8 @@ type Add = {
   correoUsuario: string;
   editando: boolean;
   setEditando: EditFunction;
+  setModalOn: any;
+  setChoice: any;
 
   tareaEditar: string;
   setTareaEditar: string;
@@ -28,6 +30,8 @@ export const ListadoTareas: Function = ({
   setEditando,
   tareaEditar,
   setTareaEditar,
+  setModalOn,
+  setChoice,
 }: Add) => {
   async function eliminarTarea(idTareaAElminar: string) {
     //crear nuevo array de tareas
@@ -37,12 +41,16 @@ export const ListadoTareas: Function = ({
     //actualizar base de datos
     const docuRef = doc(firestore, `usuarios/${correoUsuario}`);
     updateDoc(docuRef, { tareas: [...nvoArrayTareas] });
+    console.log("quedo");
     //actializar state
     setArrayTareas(nvoArrayTareas);
+    setChoice(false);
+    setModalOn(false);
   }
 
   function editarTarea(objetoTarea: Task) {
     setEditando(true);
+
     let formDescripcion = document.querySelector(
       "#formDescripcion"
     ) as HTMLInputElement;
@@ -54,9 +62,10 @@ export const ListadoTareas: Function = ({
 
   return (
     <div>
-      {arrayTareas.map((objetoTarea: Task) => {
+      {arrayTareas.map((objetoTarea: Task, index) => {
         return (
           <Tarea
+            key={index}
             arrayTareas={arrayTareas}
             objetoTarea={objetoTarea}
             eliminarTarea={eliminarTarea}

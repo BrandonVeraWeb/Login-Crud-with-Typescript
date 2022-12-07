@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Modal } from "../utils/Modal";
 type Task = {
   descripcion: string;
   id: string;
@@ -20,6 +21,13 @@ export default function Tarea({
   editarTarea,
   editando,
 }: Add) {
+  const [modalOn, setModalOn] = useState<boolean>(false);
+  const [choice, setChoice] = useState<boolean>(false);
+
+  const clicked = () => {
+    setModalOn(true);
+  };
+
   const stylesPastillaEstado = {
     pendiente:
       "text-white bg-gray-800 hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
@@ -62,13 +70,26 @@ export default function Tarea({
 
         <div className="mt-2 mb-2"></div>
         <div className="inline-flex rounded-md shadow-sm">
-          <button
-            onClick={() => eliminarTarea(objetoTarea.id)}
-            className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-          >
-            {" "}
-            Eliminar Tarea
-          </button>
+          <div className="cursor-pointer">
+            <div>
+              <button
+                onClick={clicked}
+                className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+              >
+                {" "}
+                Eliminar Tarea
+              </button>
+            </div>
+
+            {modalOn && (
+              <Modal
+                setModalOn={setModalOn}
+                setChoice={setChoice}
+                eliminarTarea={eliminarTarea}
+                objetoTarea={objetoTarea}
+              />
+            )}
+          </div>
         </div>
         <div className="inline-flex rounded-md shadow-sm">
           <button

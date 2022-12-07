@@ -105,15 +105,15 @@ export const AgregarTarea: Function = ({
   }
 
   const cancelarEdicion = async () => {
+    formRef.current.reset();
     setEditando(false);
-    formRef.current.value = " ";
   };
 
   return (
     <>
       <form ref={formRef} onSubmit={editando ? editarTarea : anadirTarea}>
         <input
-          className=" text-center text-2xl block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-center"
+          className=" text-center text-2xl block p-2 items-center text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-center"
           required
           type="text"
           placeholder="Alguna Tarea Por Hacer?"
