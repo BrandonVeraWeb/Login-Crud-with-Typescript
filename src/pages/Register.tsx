@@ -12,7 +12,7 @@ export function Register() {
   });
 
   const navigate = useNavigate();
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<string>("");
 
   const handleSubmit = (field: string, value: string) => {
     setUser((prevUser) => ({ ...prevUser, [field]: value }));
@@ -24,11 +24,22 @@ export function Register() {
     setError("Cargando, Ya puedes iniciar sesion");
     try {
       await createUserWithEmailAndPassword(auth, user.email, user.password);
-
       navigate("/changeName");
-      await setError("Cargando, Ya puedes iniciar sesion");
     } catch (error) {
-      setError("Don't Work");
+      if (error instanceof Error) {
+        if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+          setError("Email ya esta en uso");
+        }
+        if (
+          error.message ===
+          "Firebase: Password should be at least 6 characters (auth/weak-password)."
+        ) {
+          setError("La contraseña debe tener minimo 6 caracteres");
+        }
+        if (error.message === "Firebase: Error (auth/invalid-email).") {
+          setError("Ingrese un correo electronico valido");
+        }
+      }
     }
   };
   return (

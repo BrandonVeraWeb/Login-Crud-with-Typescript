@@ -48,8 +48,8 @@ export function Home() {
   return (
     <div>
       <Navbar />
-      <div className=" text-center min-h-screen max-xs mt-20 ml-60 mr-60 pb-20 text-black rounded">
-        <div className="rounded-xl bg-slate-100 rounded shadow-md py-12 px-24 mb-4 border-4 border-zinc-500 ">
+      <div className="flex flex-wrap text-center min-h-screen max-xs mt-20 ml-60 mr-60 pb-20 text-black rounded justify-center">
+        <div className=" rounded-xl bg-slate-100 rounded shadow-md py-12 px-24 mb-4 border-4 border-zinc-500 ">
           <h1 className="text-xl mb-4 text-center"> Welcome</h1>
           <AgregarTarea
             arrayTareas={arrayTareas}

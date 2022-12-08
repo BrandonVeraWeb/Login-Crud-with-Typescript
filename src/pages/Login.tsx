@@ -11,7 +11,7 @@ export function Login() {
   });
   const { Login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<string>("");
 
   const handleSubmit = (field: string, value: string) => {
     setUser((prevUser) => ({ ...prevUser, [field]: value }));
@@ -20,13 +20,20 @@ export function Login() {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
-    setError("Cargando");
+    setError("");
     try {
       await Login(user.email, user.password);
       navigate("/");
       setError("Cargando");
     } catch (error) {
-      setError("Correo o Contraseña son invalidas");
+      if (error instanceof Error) {
+        if (error.message === "Firebase: Error (auth/user-not-found).") {
+          setError("Correo electronico inexistente");
+        }
+        if (error.message === "Firebase: Error (auth/wrong-password).") {
+          setError("Contraña invalida");
+        }
+      }
     }
   };
 
