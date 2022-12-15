@@ -31,6 +31,9 @@ export function Navbar({}) {
             <p className="text-xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">
               To Do List
             </p>
+            <span className="text-center text-white font-bold ml-2">
+              {user.displayName}
+            </span>
             <button
               className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-red rounded bg-white block lg:hidden outline-none focus:outline-none"
               type="button"
@@ -51,7 +54,6 @@ export function Navbar({}) {
               <li className="nav-item">
                 <p className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-white hover:opacity-75">
                   <i className="fab text-xl leading-lg text-white opacity-75"></i>
-                  <span className="ml-2">{user.displayName}</span>
                 </p>
               </li>
             </ul>

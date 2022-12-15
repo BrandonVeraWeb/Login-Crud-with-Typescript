@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 export const Modal = ({
   setModalOn,
   setChoice,
@@ -9,9 +10,11 @@ export const Modal = ({
   eliminarTarea: Function;
   objetoTarea: any;
 }) => {
+  const navigate = useNavigate();
   const handleCancelClick = () => {
     setChoice(false);
     setModalOn(false);
+    navigate("/");
   };
 
   return (
@@ -21,7 +24,6 @@ export const Modal = ({
         <div className="">
           <div className="text-center p-5 flex-auto justify-center">
             <svg
-              xmlns="http://www.w3.org/2000/svg"
               className="w-4 h-4 -m-1 flex items-center text-red-500 mx-auto"
               fill="none"
               viewBox="0 0 24 24"
@@ -35,7 +37,6 @@ export const Modal = ({
               ></path>
             </svg>
             <svg
-              xmlns="http://www.w3.org/2000/svg"
               className="w-16 h-16 flex items-center text-red-500 mx-auto"
               viewBox="0 0 20 20"
               fill="currentColor"

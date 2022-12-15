@@ -46,11 +46,11 @@ export function Home() {
   if (loading) return <h1>loading</h1>;
 
   return (
-    <div>
+    <>
       <Navbar />
       <div className="flex flex-wrap text-center min-h-screen max-xs mt-20 ml-60 mr-60 pb-20 text-black rounded justify-center">
-        <div className=" rounded-xl bg-slate-100 rounded shadow-md py-12 px-24 mb-4 border-4 border-zinc-500 ">
-          <h1 className="text-xl mb-4 text-center"> Welcome</h1>
+        <div className=" relative rounded-xl bg-slate-100 rounded shadow-md py-12 px-24 mb-4 border-4 border-zinc-500 ">
+          <h1 className="text-xl mb-4 text-center"> Bienvenido</h1>
           <AgregarTarea
             arrayTareas={arrayTareas}
             setArrayTareas={setArrayTareas}
@@ -73,7 +73,7 @@ export function Home() {
           ) : null}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -5,12 +5,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { Alert } from "../config/Alert";
+import { Cargando } from "../config/Cargando";
 export function Register() {
   const [user, setUser] = useState<{ email: string; password: string }>({
     email: "",
     password: "",
   });
-
+  const [cargando, setCargando] = useState<string>("");
   const navigate = useNavigate();
   const [error, setError] = useState<string>("");
 
@@ -20,26 +21,59 @@ export function Register() {
   const signInWithEmailAndPassword = async (
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
+    setError("");
+    setCargando("");
     e.preventDefault();
-    setError("Cargando, Ya puedes iniciar sesion");
+    const regEx =
+      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     try {
-      await createUserWithEmailAndPassword(auth, user.email, user.password);
-      navigate("/changeName");
+      if (regEx.test(user.email)) {
+        setCargando("Cargando");
+        await createUserWithEmailAndPassword(auth, user.email, user.password);
+        navigate("/changeName");
+      } else {
+        throw new Error("");
+      }
     } catch (error) {
       if (error instanceof Error) {
+        setCargando("");
         if (error.message === "Firebase: Error (auth/email-already-in-use).") {
-          setError("Email ya esta en uso");
+          setError("Correo ya esta en uso");
         }
         if (
           error.message ===
           "Firebase: Password should be at least 6 characters (auth/weak-password)."
         ) {
-          setError("La contraseña debe tener minimo 6 caracteres");
+          setError("La contraseña dene tener minimo 6 caracteres");
         }
         if (error.message === "Firebase: Error (auth/invalid-email).") {
           setError("Ingrese un correo electronico valido");
         }
       }
+
+      if (!regEx.test(user.email) && user.email !== " ") {
+        setError("No usar tantos caracteres especiales");
+      }
+
+      // }
+      // try {
+      //   await createUserWithEmailAndPassword(auth, user.email, user.password);
+      //   navigate("/changeName");
+      // } catch (error) {
+      //   if (error instanceof Error) {
+      //     if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+      //       setError("Email ya esta en uso");
+      //     }
+      //     if (
+      //       error.message ===
+      //       "Firebase: Password should be at least 6 characters (auth/weak-password)."
+      //     ) {
+      //       setError("La contraseña debe tener minimo 6 caracteres");
+      //     }
+      //     if (error.message === "Firebase: Error (auth/invalid-email).") {
+      //       setError("Ingrese un correo electronico valido");
+      //     }
+      //   }
     }
   };
   return (
@@ -47,6 +81,7 @@ export function Register() {
       <div className="flex h-screen justify-center items-center">
         <div className="bg-gray-100 flex-col justify-center bg-white py-12 px-24 border-4 border-sky-900 rounded-xl">
           <div className="block text-gray-700 text-lg font-bold my-2 pb-5 mb-5 ">
+            {cargando && <Cargando message={cargando} />}
             {error && <Alert message={error} />}
 
             <form className="bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4">
