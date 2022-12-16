@@ -48,7 +48,7 @@ export function ResetPassword() {
                     htmlFor="email"
                     className="text-center mb-5 block text-gray-700 text-sm font-bold my-2 text-xl"
                   >
-                    Tu Correo Electronico
+                    Tu correo electronico
                   </label>
                   <input
                     onChange={(e) => handleSubmit("email", e.target.value)}
@@ -65,7 +65,7 @@ export function ResetPassword() {
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm"
                     onClick={handleResetPassword}
                   >
-                    Enviar Email
+                    Enviar email
                   </button>
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm ml-2">
                     <Link to="/Login">Cancelar</Link>

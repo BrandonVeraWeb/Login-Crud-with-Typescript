@@ -44,7 +44,7 @@ export function Register() {
           error.message ===
           "Firebase: Password should be at least 6 characters (auth/weak-password)."
         ) {
-          setError("La contraseña dene tener minimo 6 caracteres");
+          setError("La contraseña debe tener minimo 6 caracteres");
         }
         if (error.message === "Firebase: Error (auth/invalid-email).") {
           setError("Ingrese un correo electronico valido");
@@ -54,26 +54,6 @@ export function Register() {
       if (!regEx.test(user.email) && user.email !== " ") {
         setError("No usar tantos caracteres especiales");
       }
-
-      // }
-      // try {
-      //   await createUserWithEmailAndPassword(auth, user.email, user.password);
-      //   navigate("/changeName");
-      // } catch (error) {
-      //   if (error instanceof Error) {
-      //     if (error.message === "Firebase: Error (auth/email-already-in-use).") {
-      //       setError("Email ya esta en uso");
-      //     }
-      //     if (
-      //       error.message ===
-      //       "Firebase: Password should be at least 6 characters (auth/weak-password)."
-      //     ) {
-      //       setError("La contraseña debe tener minimo 6 caracteres");
-      //     }
-      //     if (error.message === "Firebase: Error (auth/invalid-email).") {
-      //       setError("Ingrese un correo electronico valido");
-      //     }
-      //   }
     }
   };
   return (
